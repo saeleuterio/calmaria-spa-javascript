@@ -13,8 +13,11 @@ function alternarModal(modalId, abrir) {
 document.addEventListener('keydown', (event) => {
     if (event.key === "Escape") {
         alternarModal('ver-modal-inscrito', false);
+        document.querySelectorAll(".cabecalho__lista-item").forEach((item) => {
+            alternarSubmenu(item, false);
+        });
     }
-})
+});
 
 function alternarSubmenu(item, mostrar) {
     const submenu = item.querySelector(".submenu");
@@ -25,11 +28,14 @@ function alternarSubmenu(item, mostrar) {
         const menuItem = item.querySelector(".cabecalho__lista-item a");
         menuItem.setAttribute("aria-expanded", mostrar ? true : false);
         
-        const DropdownExpandedIcon = item.querySelector(".material-symbols-outlined.icone");
+        const DropdownExpandedIcon = item.querySelector(
+            ".material-symbols-outlined.icone"
+        );
 
         DropdownExpandedIcon.classList.toggle("active", mostrar);
     }
 }
+
 // selecionar todo os cabecalho__lista-item
 document.querySelectorAll(".cabecalho__lista-item").forEach(item => {
     // adicionar um ouvinte mouseover
