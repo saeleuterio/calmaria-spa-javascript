@@ -1,3 +1,5 @@
+let ultimoElementoFocado;
+
 function gerenciarFocoModal(modalId) {
     const modal = document.querySelector(`#${modalId}`);
     const elementosModal = modal.querySelectorAll(
@@ -10,7 +12,7 @@ function gerenciarFocoModal(modalId) {
     primeiroElemento.focus();
 
     modal.addEventListener("keydown", (event) => {
-        if (event.key === "tab") {
+        if (event.key === "Tab") {
             if (event.shiftkey) {
                 //Se a tecla Shift+Tab for pressionada, e o foco estiver no primeiro elemento, mover para o último elemento
                 if (document.activeElement === primeiroElemento) {
@@ -32,10 +34,16 @@ function alternarModal(modalId, abrir) {
     const modal = document.querySelector(`#${modalId}`);
 
     if (abrir) {
+        ultimoElementoFocado = document.activeElement;
+        
         modal.style.display = 'block';
         gerenciarFocoModal(modalId);
     } else {
         modal.style.display = 'none';
+
+        if(ultimoElementoFocado) {
+            ultimoElementoFocado.focus();
+        }
     }
 
     document.body.style.overflow = abrir ? "hidden" : "auto";
