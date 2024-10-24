@@ -1,11 +1,11 @@
 function gerenciarFocoModal(modalId) {
-    const modal = document.querySelector(`#${modalID}`);
+    const modal = document.querySelector(`#${modalId}`);
     const elementosModal = modal.querySelectorAll(
         'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
 
     const primeiroElemento = elementosModal[0];
-    const ultimoElemento = elementosModal[elementosModal.length -1];
+    const ultimoElemento = elementosModal[elementosModal.length - 1];
 
     primeiroElemento.focus();
 
@@ -19,10 +19,7 @@ function gerenciarFocoModal(modalId) {
                 }
             } else {
                 //Se a tecla Tab for pressionada, e o foco estiver no último elemento, mover para o primeiro
-                if (
-                    document.activeElement === ultimoElemento ||
-                    !modal.contains(document.activeElement)
-                ) {
+                if (document.activeElement === ultimoElemento || !modal.contains(document.activeElement)) {
                     event.preventDefault();
                     primeiroElemento.focus();
                 }
